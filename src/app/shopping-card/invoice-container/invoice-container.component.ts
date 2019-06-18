@@ -15,7 +15,7 @@ export interface Product {
   styleUrls: ['./invoice-container.component.css']
 })
 export class InvoiceContainerComponent implements OnInit {
-  private url = 'http://localhost:3000/shop/invoice';
+  private url = 'http://localhost:3000/invoice';
   products$: Observable<Product[]>;
   constructor(private httpClient: HttpClient) { }
 

@@ -21,6 +21,7 @@
     "@angular/router": "~7.2.0",
     "bootstrap": "^4.3.1",
     "core-js": "^2.5.4",
+    "cors": "^2.8.5",
     "express": "^4.17.0",
     "fs": "0.0.1-security",
     "group-array": "^0.3.3",

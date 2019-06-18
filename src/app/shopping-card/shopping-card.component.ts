@@ -16,7 +16,7 @@ export class ShoppingCardComponent implements OnInit {
 
 
   ngOnInit() {
-    this.httpClient.get('http://localhost:3000/shop/invoice')
+    this.httpClient.get('http://localhost:3000/invoice')
       .subscribe(data => {
         console.log(data);
         this.data = data;

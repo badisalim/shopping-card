@@ -12,14 +12,14 @@ async function init() {
   app
     .use(cors())
     .use(express.json())
-    .get('/shop/invoice', (req, res) => {
+    .get('/invoice', (req, res) => {
       res.send(invoice)
     })
-    .get('/shop/invoice/:id', (req, res) => {
+    .get('/invoice/:id', (req, res) => {
       const id = parseInt(req.params.id);
       res.send(invoice.find(product => product.id === id));
     })
-    .post('/shop/invoice', (req, res) => {
+    .post('/invoice', (req, res) => {
       console.log(req.body);
 
       const product = req.body;
@@ -27,19 +27,19 @@ async function init() {
       invoice.push(product);
       saveData(invoiceFile, invoice).then(() => res.send(invoice));
     })
-    .put('/shop/invoice', async (req, res) => {
+    .put('/invoice', async (req, res) => {
       const product = req.body;
       const existingProduct = invoice.find(p => p.id === product.id);
       Object.assign(existingProduct, product);
       await saveData(invoiceFile, invoice).then(() => res.send(invoice));
     })
-    // .edit('/shop/invoice/:id', async (req, res) => {
+    // .edit('/invoice/:id', async (req, res) => {
     //   const id = parseInt(req.params.id);
     //   invoice = invoice.filter(p => p.id !== id);
     //   await saveData(invoiceFile, invoice).then(() => res.send(invoice));
     // })
 
-    .delete('/shop/invoice/:id', async (req, res) => {
+    .delete('/invoice/:id', async (req, res) => {
       const id = parseInt(req.params.id);
       invoice = invoice.filter(p => p.id !== id);
       await saveData(invoiceFile, invoice).then(() => res.send(invoice));

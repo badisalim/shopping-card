@@ -17,7 +17,7 @@ export interface Product {
   providedIn: 'root'
 })
 export class ProductsService {
-  host = 'http://localhost:3000/shop/invoice';
+  host = 'http://localhost:3000/invoice';
   constructor(private httpClient: HttpClient) { }
 
   getProducts(): Observable<Product[]> {
@@ -25,7 +25,7 @@ export class ProductsService {
     return this.httpClient.get<Product[]>(this.host);
   }
   getProduct(id: number): Observable<Product> {
-    return this.httpClient.get<Product>('${this.host}/${code}');
+    return this.httpClient.get<Product>('${this.host}/${id}');
   }
 
   addProduct(product: Product) {
@@ -37,7 +37,7 @@ export class ProductsService {
 
   }
   deleteProduct(id: number) {
-    return this.httpClient.delete<Product>('${this.host}/${code}');
+    return this.httpClient.delete<Product>('${this.host}/${id}');
 
   }
 
