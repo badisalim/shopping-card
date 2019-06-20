@@ -28,17 +28,33 @@
         <td>{{item.quantity * item.price | currency:'$'}}</td>
         <td>
           <button (click)="removeItem(id)" class="btn btn-sm btn-danger"><img width="20px"
-              src="../../assets/icon/trash.png" /></button>
+              src="../../assets/icons/trash.png" /></button>
         </td>
       </tr>
       <tr>
         <td><button type="button" (click)="addItem()" class="btn btn-sm btn-primary rounded-0">
-          Add Product ...</button></td>
-        <td></td>
+            Add Product ...</button></td>
+        <td>  <div>
+          <a routerLink="/invoice" class="btn btn-secondary">Cancel</a>&nbsp;
+          <input type="submit" class="btn btn-primary" value="OK" />
+        </div>   </td>
+
         <td>Total:</td>
         <td>{{total() | currency:'$'}}</td>
+
+
+        <!-- <td><button type="button" (click)="editProduct()" class="btn btn-sm btn-primary rounded-0">
+          editProduct ...</button></td>
+        <td></td> -->
+
+        <!-- <div>
+          <a routerLink="/invoice" class="btn btn-secondary">Cancel</a>&nbsp;
+          <input type="submit" class="btn btn-primary" value="OK" />
+        </div> -->
+
+        
+
       </tr>
     </tbody>
   </table>
 </div>
-

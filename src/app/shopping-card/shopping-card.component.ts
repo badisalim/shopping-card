@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ProductsService } from './invoice.service';
+import { ProductsService, Product } from './invoice.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-shopping-card',
@@ -12,7 +13,7 @@ export class ShoppingCardComponent implements OnInit {
   HttpClient: any;
   data: any;
 
-  constructor(private httpClient: HttpClient, private productService: ProductsService) { }
+  constructor(private httpClient: HttpClient, private productService: ProductsService,private router: Router) { }
 
 
   ngOnInit() {
@@ -27,8 +28,14 @@ export class ShoppingCardComponent implements OnInit {
 
     this.data.push({ name: '', quantity: 1, price: 1 });
     // CALL SERVICE
-    this.productService.addProduct({ name: '', quantity: 1, price: 1 });
+    this.productService.addItem({ name: '', quantity: 1, price: 1 });
   }
+  async submit(product: Product) {
+    await this.httpClient.post('http://localhost:3000/invoice', product).toPromise();
+    this.router.navigateByUrl('invoice');
+  }
+
+
 
   total() {
     const productsTotal = this.data.map(product => product.quantity * product.price);

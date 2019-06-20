@@ -1,7 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-
 import { Product } from '../invoice-container/invoice-container.component';
+import { ProductsService } from '../invoice.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -9,13 +10,15 @@ import { Product } from '../invoice-container/invoice-container.component';
   templateUrl: './invoice-form.component.html',
   styleUrls: ['./invoice-form.component.css']
 })
+
+
 export class InvoiceFormComponent implements OnInit {
   @Input() product: Product;
   @Output() save = new EventEmitter<Product>();
-  form: FormGroup;
+  form: any;
   formGroup: FormGroup;
   routerNavigateByUrl: any;
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private productsService: ProductsService, private router: Router) { }
 
   ngOnInit() {
     this.formGroup = this.formBuilder.group({
@@ -32,9 +35,34 @@ export class InvoiceFormComponent implements OnInit {
   async submit() {
     if (this.formGroup.valid) {
       console.log(this.formGroup.value);
+      await this.productsService.addItem(this.formGroup.value);
       this.save.emit(this.formGroup.value);
+      this.router.navigateByUrl('/invoice');
 
     }
   }
 
 }
+
+// export class ProductFormComponent implements OnInit {
+//   @Input() product: Product;
+//   @Output() save = new EventEmitter<Product>();
+//   formGroup: FormGroup;
+//   constructor(private formBuilder: FormBuilder) {}
+
+//   ngOnInit() {
+//     this.formGroup = this.formBuilder.group({
+//       id: [''],
+//       name: [''],
+//       code: [''],
+//       price: []
+//     });
+//     this.formGroup.patchValue(this.product);
+//   }
+
+//   async submit() {
+//     if (this.formGroup.valid) {
+//       this.save.emit(this.formGroup.value);
+//     }
+//   }
+// }

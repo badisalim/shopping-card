@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Product } from './invoice-container/invoice-container.component';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 
 export interface Product {
@@ -18,7 +19,7 @@ export interface Product {
 })
 export class ProductsService {
   host = 'http://localhost:3000/invoice';
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private productService: ProductsService, private router: Router) { }
 
   getProducts(): Observable<Product[]> {
 
@@ -28,10 +29,15 @@ export class ProductsService {
     return this.httpClient.get<Product>('${this.host}/${id}');
   }
 
-  addProduct(product: Product) {
+
+  addItem(product: Product) {
     console.log("1234", product);
     return this.httpClient.post(this.host, product).subscribe(data => console.log(data));
   }
+  // addProduct(product: Product) {
+  //   console.log("1234", product);
+  //   return this.httpClient.post(this.host, product).subscribe(data => console.log(data));
+  // }
   editProduct(product: Product) {
     return this.httpClient.put(this.host, product);
 
