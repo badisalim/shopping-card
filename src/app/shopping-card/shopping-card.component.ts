@@ -13,7 +13,7 @@ export class ShoppingCardComponent implements OnInit {
   HttpClient: any;
   data: any;
 
-  constructor(private httpClient: HttpClient, private productService: ProductsService,private router: Router) { }
+  constructor(private httpClient: HttpClient, private productService: ProductsService, private router: Router) { }
 
 
   ngOnInit() {

@@ -31,7 +31,7 @@ export class ProductsService {
 
 
   addItem(product: Product) {
-    console.log("1234", product);
+
     return this.httpClient.post(this.host, product).subscribe(data => console.log(data));
   }
   // addProduct(product: Product) {

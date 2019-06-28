@@ -32,27 +32,21 @@
         </td>
       </tr>
       <tr>
-        <td><button type="button" (click)="addItem()" class="btn btn-sm btn-primary rounded-0">
+        <td><button type="button" (click)="addItem(id)" class="btn btn-sm btn-primary rounded-0">
             Add Product ...</button></td>
-        <td>  <div>
-          <a routerLink="/invoice" class="btn btn-secondary">Cancel</a>&nbsp;
-          <input type="submit" class="btn btn-primary" value="OK" />
-        </div>   </td>
+        <td>
+          <div>
+            <a routerLink="/invoice" class="btn btn-secondary">Cancel</a>&nbsp;
+            <input type="submit" class="btn btn-primary" value="OK" />
+          </div>
+        </td>
 
         <td>Total:</td>
         <td>{{total() | currency:'$'}}</td>
 
-
-        <!-- <td><button type="button" (click)="editProduct()" class="btn btn-sm btn-primary rounded-0">
-          editProduct ...</button></td>
-        <td></td> -->
-
-        <!-- <div>
-          <a routerLink="/invoice" class="btn btn-secondary">Cancel</a>&nbsp;
-          <input type="submit" class="btn btn-primary" value="OK" />
-        </div> -->
-
-        
+        <td><button type="button" (click)="editProduct()" class="btn btn-sm btn-primary rounded-0">
+            editProduct ...</button></td>
+        <td></td>
 
       </tr>
     </tbody>
