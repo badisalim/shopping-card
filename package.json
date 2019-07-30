@@ -25,6 +25,7 @@
     "express": "^4.17.0",
     "fs": "0.0.1-security",
     "group-array": "^0.3.3",
+    "lodash": "^4.17.15",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
     "zone.js": "~0.8.26"
