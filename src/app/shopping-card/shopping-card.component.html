@@ -30,7 +30,10 @@
           <button (click)="removeItem(id)" class="btn btn-sm btn-danger"><img width="20px"
               src="https://raw.githubusercontent.com/badisalim/shopping-card/master/src/assets/icons/trash.png" /></button>
         </td>
-      </tr>
+        <td><button type="button" (click)="editProduct()" class="btn btn-sm btn-primary rounded-0">
+          Edit</button></td>
+
+             </tr>
       <tr>
         <td><button type="button" (click)="addItem(id)" class="btn btn-sm btn-primary rounded-0">
             Add Product ...</button></td>
@@ -44,8 +47,6 @@
         <td>Total:</td>
         <td>{{total() | currency:'$'}}</td>
 
-        <td><button type="button" (click)="editProduct()" class="btn btn-sm btn-primary rounded-0">
-            editProduct ...</button></td>
         <td></td>
 
       </tr>

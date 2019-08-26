@@ -34,10 +34,10 @@ export class ProductsService {
 
     return this.httpClient.post(this.host, product).subscribe(data => console.log(data));
   }
-  // addProduct(product: Product) {
-  //   console.log("1234", product);
-  //   return this.httpClient.post(this.host, product).subscribe(data => console.log(data));
-  // }
+  addProduct(product: Product) {
+    console.log("1234", product);
+    return this.httpClient.post(this.host, product).subscribe(data => console.log(data));
+  }
   editProduct(product: Product) {
     return this.httpClient.put(this.host, product);
 
