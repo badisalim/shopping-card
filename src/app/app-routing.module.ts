@@ -1,27 +1,31 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { ProjectsComponent } from './projects/projects.component';
 import { ShoppingCardComponent } from './shopping-card/shopping-card.component';
-import { InvoiceFormComponent } from './shopping-card/invoice-form/invoice-form.component';
-import { InvoiceContainerComponent } from './shopping-card/invoice-container/invoice-container.component';
 
 
 
 const routes: Routes = [
+
+  {
+    path: '',
+    redirectTo: '/projects',
+    pathMatch: 'full'
+  },
+
+  {
+    path: 'projects',
+    component: ProjectsComponent
+  },
+  {
+    path: 'shop',
+    loadChildren: './shop.module#ShopModule'
+  },
   {
     path: 'shopping-card',
     component: ShoppingCardComponent
   },
-  {
-    path: 'invoice-form',
-    component: InvoiceFormComponent
-  },
-  {
-    path: 'invoice-container',
-    component: InvoiceContainerComponent
-  },
-
-
-
+  
 
 
 ];

@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Product } from '../invoice-container/invoice-container.component';
-import { ProductsService } from '../invoice.service';
+// import { ProductsService } from '../shopping-card/invoice.service';
 import { Router } from '@angular/router';
 
 
@@ -18,7 +18,8 @@ export class InvoiceFormComponent implements OnInit {
   form: any;
   formGroup: FormGroup;
   routerNavigateByUrl: any;
-  constructor(private formBuilder: FormBuilder, private productsService: ProductsService, private router: Router) { }
+  productsService: any;
+  constructor(private formBuilder: FormBuilder, private router: Router) { }
 
   ngOnInit() {
     this.formGroup = this.formBuilder.group({
@@ -31,13 +32,14 @@ export class InvoiceFormComponent implements OnInit {
     });
     this.formGroup.patchValue(this.product);
   }
-
+  
   async submit() {
     if (this.formGroup.valid) {
       console.log(this.formGroup.value);
-      await this.productsService.addItem(this.formGroup.value);
       this.save.emit(this.formGroup.value);
-      this.router.navigateByUrl('/invoice');
+      await this.productsService.addItem(this.formGroup.value).toPromise();
+      
+      this.router.navigateByUrl('/products');
 
     }
   }

@@ -8,14 +8,13 @@ export interface Product {
   price: number;
 }
 
-
 @Component({
   selector: 'app-invoice-container',
   templateUrl: './invoice-container.component.html',
   styleUrls: ['./invoice-container.component.css']
 })
 export class InvoiceContainerComponent implements OnInit {
-  private url = 'https://my-json-server.typicode.com/badisalim/shopping-card/data';
+  private url = 'http://localhost:3000/products';
   products$: Observable<Product[]>;
   constructor(private httpClient: HttpClient) { }
 

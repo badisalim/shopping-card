@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ProductsService, Product } from './invoice.service';
+import { Product} from '../invoice-container/invoice-container.component';
 import { Router } from '@angular/router';
-
+import { ProductsService } from './invoice.service';
 @Component({
   selector: 'app-shopping-card',
   templateUrl: './shopping-card.component.html',
@@ -17,7 +17,7 @@ export class ShoppingCardComponent implements OnInit {
 
 
   ngOnInit() {
-    this.httpClient.get('https://my-json-server.typicode.com/badisalim/shopping-card/data')
+    this.httpClient.get('http://localhost:3000/products')
       .subscribe(data => {
         console.log(data);
         this.data = data;
@@ -31,8 +31,8 @@ export class ShoppingCardComponent implements OnInit {
     this.productService.addItem({ name: '', quantity: 1, price: 1 });
   }
   async submit(product: Product) {
-    await this.httpClient.post('https://my-json-server.typicode.com/badisalim/shopping-card/data', product).toPromise();
-    this.router.navigateByUrl('invoice');
+    await this.httpClient.post('http://localhost:3000/products', product).toPromise();
+    this.router.navigateByUrl('products');
   }
 
 
@@ -52,45 +52,45 @@ export class ShoppingCardComponent implements OnInit {
 
 
 
-// export class ShoppingCartComponent implements OnInit {
-//   invoice = [{
-//     name: 'Apple',
-//     quantity: 3,
-//     price: 1.10
-//   },
-//   {
-//     name: 'Orange',
-//     quantity: 2,
-//     price: 1.99
-//   },
-//   {
-//     name: 'Melon',
-//     quantity: 1,
-//     price: 3.22
-//   }
-//   ];
+// // export class ShoppingCartComponent implements OnInit {
+// //   invoice = [{
+// //     name: 'Apple',
+// //     quantity: 3,
+// //     price: 1.10
+// //   },
+// //   {
+// //     name: 'Orange',
+// //     quantity: 2,
+// //     price: 1.99
+// //   },
+// //   {
+// //     name: 'Melon',
+// //     quantity: 1,
+// //     price: 3.22
+// //   }
+// //   ];
 
-//   constructor() { }
+// //   constructor() { }
 
-//   ngOnInit() {
+// //   ngOnInit() {
 
-//   }
+// //   }
 
-//   addItem() {
-//     this.invoice.push({ name: '', quantity: 1, price: 1 });
-//   }
+// //   addItem() {
+// //     this.invoice.push({ name: '', quantity: 1, price: 1 });
+// //   }
 
-//   total() {
-//     const productsTotal = this.invoice.map(product => product.quantity * product.price);
-//     return (this.invoice.length > 0) ? productsTotal.reduce((product1, product2) => product1 + product2) : 0;
-//   }
+// //   total() {
+// //     const productsTotal = this.invoice.map(product => product.quantity * product.price);
+// //     return (this.invoice.length > 0) ? productsTotal.reduce((product1, product2) => product1 + product2) : 0;
+// //   }
 
-//   removeItem(id) {
-//     console.log(this.invoice[id]);
-//     this.invoice.splice(id, 1);
-//   }
+// //   removeItem(id) {
+// //     console.log(this.invoice[id]);
+// //     this.invoice.splice(id, 1);
+// //   }
 
-// }
+// // }
 
 
 

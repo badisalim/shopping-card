@@ -1,6 +1,3 @@
-<p>
-  invoice-form works!
-</p>
 <form [formGroup]="formGroup" (ngSubmit)="submit()">
   <input type="hidden" class="form-control" formControlName="id" />
   <div class="form-group">
@@ -8,7 +5,7 @@
     <input type="text" class="form-control" formControlName="name" />
   </div>
   <div class="form-group">
-    <label for="">Quantity..</label>
+    <label for="">Quantity</label>
     <input type="number" class="form-control" formControlName="quantity" />
   </div>
   <div class="form-group">
@@ -17,7 +14,7 @@
   </div>
 
   <div>
-    <a routerLink="/invoice" class="btn btn-secondary">Cancel</a>&nbsp;
+    <a routerLink="products" class="btn btn-secondary">Cancel</a>&nbsp;
     <input type="submit" class="btn btn-primary" value="OK" />
   </div>
 </form>

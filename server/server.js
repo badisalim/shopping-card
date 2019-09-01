@@ -5,49 +5,39 @@ const fs = require('fs');
 const _ = require('lodash');
 
 async function init() {
-  const invoiceFile = './server/invoice.json';
+  const productsFile = './server/products.json';
 
-  let invoice = await loadData(invoiceFile);
+  let products = await loadData(productsFile);
 
   app
     .use(cors())
     .use(express.json())
-    .get('/invoice', (req, res) => {
-      res.send(invoice)
-    })
-    .get('/invoice/:id', (req, res) => {
+    .get('/products', (req, res) => res.send(products))
+    .get('/products/:id', (req, res) => {
       const id = parseInt(req.params.id);
-      res.send(invoice.find(product => product.id === id));
+      res.send(products.find(product => product.id === id));
     })
-    .post('/invoice', (req, res) => {
-      console.log(req.body);
-
+    .post('/products', async (req, res) => {
       const product = req.body;
-      product.id = getNextid(invoice);
-      invoice.push(product);
-      saveData(invoiceFile, invoice).then(() => res.send(invoice));
+      product.id = getNextId(products);
+      products.push(product);
+      await saveData(productsFile, products).then(() => res.send(products));
     })
-    .put('/invoice', async (req, res) => {
+    .put('/products', async (req, res) => {
       const product = req.body;
-      const existingProduct = invoice.find(p => p.id === product.id);
+      const existingProduct = products.find(p => p.id === product.id);
       Object.assign(existingProduct, product);
-      await saveData(invoiceFile, invoice).then(() => res.send(invoice));
+      await saveData(productsFile, products).then(() => res.send(products));
     })
-    // .edit('/invoice/:id', async (req, res) => {
-    //   const id = parseInt(req.params.id);
-    //   invoice = invoice.filter(p => p.id !== id);
-    //   await saveData(invoiceFile, invoice).then(() => res.send(invoice));
-    // })
-
-    .delete('/invoice/:id', async (req, res) => {
+    .delete('/products/:id', async (req, res) => {
       const id = parseInt(req.params.id);
-      invoice = invoice.filter(p => p.id !== id);
-      await saveData(invoiceFile, invoice).then(() => res.send(invoice));
+      products = products.filter(p => p.id !== id);
+      await saveData(productsFile, products).then(() => res.send(products));
     })
     .listen(3000, () => console.log('server started on port 3000'));
 }
 
-function getNextid(items) {
+function getNextId(items) {
   return (
     items
     .map(item => item.id)
