@@ -14,7 +14,7 @@ export class AddProductComponent implements OnInit {
   ngOnInit() {}
 
   async submit(product: Product) {
-    await this.httpClient.post('http://localhost:3000/products', product).toPromise();
+    await this.httpClient.post('https://my-json-server.typicode.com/badisalim/shopping-card/products', product).toPromise();
     this.router.navigateByUrl('/products');
   }
 

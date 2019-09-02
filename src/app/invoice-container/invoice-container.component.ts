@@ -14,7 +14,7 @@ export interface Product {
   styleUrls: ['./invoice-container.component.css']
 })
 export class InvoiceContainerComponent implements OnInit {
-  private url = 'http://localhost:3000/products';
+  private url = 'https://my-json-server.typicode.com/badisalim/shopping-card/products';
   products$: Observable<Product[]>;
   constructor(private httpClient: HttpClient) { }
 
