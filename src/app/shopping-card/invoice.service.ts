@@ -18,7 +18,7 @@ export interface Product {
 })
 export class ProductsService {
     // host = 'https://my-json-server.typicode.com/badisalim/shopping-card/data';
-    host = 'https://localhost:3000/products';
+    host = 'https://my-json-server.typicode.com/badisalim/shopping-card/products';
     constructor(private httpClient: HttpClient, private productService: ProductsService, private router: Router) { }
 
     getProducts(): Observable<Product[]> {

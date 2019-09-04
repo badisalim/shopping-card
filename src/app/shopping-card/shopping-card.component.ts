@@ -17,7 +17,7 @@ export class ShoppingCardComponent implements OnInit {
 
 
   ngOnInit() {
-    this.httpClient.get('http://localhost:3000/products')
+    this.httpClient.get('https://my-json-server.typicode.com/badisalim/shopping-card/products')
       .subscribe(data => {
         console.log(data);
         this.data = data;
@@ -31,7 +31,7 @@ export class ShoppingCardComponent implements OnInit {
     this.productService.addItem({ name: '', quantity: 1, price: 1 });
   }
   async submit(product: Product) {
-    await this.httpClient.post('http://localhost:3000/products', product).toPromise();
+    await this.httpClient.post('http://localhost:3000/https://my-json-server.typicode.com/badisalim/shopping-card/productsproducts', product).toPromise();
     this.router.navigateByUrl('products');
   }
 
